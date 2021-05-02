@@ -1,0 +1,37 @@
+Spring security means application level security. i.e the api or the app which we have exposed.
+The authenticated people only have the authority to use or call your API.
+
+Application security framework examples are:
+
+1) Login/Logout Security
+2) Allow/Block users to access URL's to only logged in users.
+3)  Allow/Block users to access URL's to only logged in users with special roles.
+
+Also when we add spring security , it resolves all the very common vulnerabilities.
+
+Spring Security can do 
+1) Username/password authentication.
+2) LDAP 
+3) app level authorization
+4) Intra app authorization like OAuth
+5) Microservice security (tokens , JWT) 
+6) Method level security
+
+
+Authentication and Authorization
+
+Authentication - it means who you are. it confirms that users are who they claim to be. e.g username and password . this is known as
+				 knowledge based authentication. other example is phone/text messages which is known as possession based authentication.
+				 
+
+Authorization - Are the users allowed to do this. It gives the authenticated users the permission to access a resource.
+				It is done by granting authority to the user which the application needs to do before authorising which means when the
+				user is logged in or authenticated it should be given what operations the user can be done like the group of authorities
+				for every user logged in.
+
+Principal - It is currently logged in user. As the user login into the system the application establish a principal behavior to that user.
+		    cozz of this we dont have to always privide the username or password for everything use in the application.
+			
+Granted Authority - way of providing authorisation.
+
+Roles - Group of authority.
