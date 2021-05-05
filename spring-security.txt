@@ -35,3 +35,32 @@ Principal - It is currently logged in user. As the user login into the system th
 Granted Authority - way of providing authorisation.
 
 Roles - Group of authority.
+
+
+****************************************** ADDING Spring SEcurity ********************
+
+Spring security can be added by adding dependency of spring-security-starter-pack.
+You dont have to add any type of configuration in case of spring security.
+and as soon as you access the api or that localhost, it will definitely show the login page.
+
+How does this happen..??
+
+It is because of filters. These are servelet filters.
+Now what are servelet filters. In simple application suppose we have a web app and iside it many servelets are there
+which can perform their particular tasks.as a result when a user enter a url or request anything the particular
+servelet takes the request and gives response like this work will be done by me. Between the application and servelets
+resides filters.
+Filters are the objects which lies between the servelet and web application for preprocessing the request. like
+it has the authority to do filtering tasks with the url like encryption, taking header from request ,etc.
+
+So Spring actually creating the spring security filter before the request reaches the application. It has authority
+to allow or deny access.
+
+Spring security does following default behavior :
+
+1) Adds mandatory authentication for URLs except the error page.
+2) Adds login form.
+3) Handles login errors
+4) Creates a user and sets a default password.
+
+Default username will be "user" and password will be in console.
