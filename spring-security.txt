@@ -39,7 +39,7 @@ Roles - Group of authority.
 
 ****************************************** ADDING Spring SEcurity ********************
 
-Spring security can be added by adding dependency of spring-security-starter-pack.
+Spring security can be added by adding dependency of spring-boot-starter-security
 You dont have to add any type of configuration in case of spring security.
 and as soon as you access the api or that localhost, it will definitely show the login page.
 
@@ -64,3 +64,5 @@ Spring security does following default behavior :
 4) Creates a user and sets a default password.
 
 Default username will be "user" and password will be in console.
+
+you can provide your specified username and password in spring.properties file.
