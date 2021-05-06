@@ -66,3 +66,33 @@ Spring security does following default behavior :
 Default username will be "user" and password will be in console.
 
 you can provide your specified username and password in spring.properties file.
+
+******************** How to configure Authentication in Spring security *******************************
+
+Authentication Manager - Its a manager controlling the authentication in spring security. It has an authenticate()
+                         method which will return true for successfull authentication or will throw an exception for
+                         the unsuccessfull authentication.
+
+We work with the builder class of AuthenticationManager class and then we will set the configuration.
+
+Now how do i get authentication manager builder.?
+spring have a class called WebSecurityConfigurerAdapter which we need to extend and
+ it has the method configure() which takes AuthenticationManagerBuilder
+and using that parameter we can give our security configurations. As a result we have to create a new class extending it
+anfd with annotation @EnableWebSecurity.
+
+In memory authentication means the username and password are stored in the memory. for storing in file , databse , we
+have other configurations.
+
+IMP - Always deal with hashed passwords.
+
+Spring always force the developers to use the password encoders in place of the plain text passwords.
+
+********************************* Configuring Spring Security Authorization ******************
+
+Now suppose there are multiple API's for example home page, user login page and admin page.
+home page can be accessed by all, users api or page can be accessed by user and admin but the admin page will only by admin.
+So for configuring authorisation to these api's we have a class called HttpSecurity in spring security dependency.
+And to get whole of the object of this class we take it from the same WebSecurityConfigurerAdapter class in configure method.
+
+HttpSecurity object takes the path and also the role for the authorisation.
