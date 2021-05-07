@@ -91,8 +91,48 @@ Spring always force the developers to use the password encoders in place of the 
 ********************************* Configuring Spring Security Authorization ******************
 
 Now suppose there are multiple API's for example home page, user login page and admin page.
-home page can be accessed by all, users api or page can be accessed by user and admin but the admin page will only by admin.
+home page can be accessed by  all, users api or page can be accessed by user and admin but the admin page will only by admin.
 So for configuring authorisation to these api's we have a class called HttpSecurity in spring security dependency.
 And to get whole of the object of this class we take it from the same WebSecurityConfigurerAdapter class in configure method.
 
 HttpSecurity object takes the path and also the role for the authorisation.
+
+********************************* How spring security works internally ******************
+
+Spring security is creating the DelegatingFilterProxy i.e a type of filter explained above to the web application.
+It actually doing the filter mapping which we have to do manually if not using spring security or working on servelets.
+
+In API's security we really have to secure or provide security to every url, its not that you should only secure
+a handful of url's , its because if you secure a few url's and leave the rest of it then you are making your
+entire application vulnerable.
+There are several filters between the web application and the program , hence one of the filter is used for initial
+authentication and others are maybe for authorisation.
+
+Assume the authentication as an input and output. Here input can be credentials while the output can be boolean value
+for success like true/false. but in reality the boolean value is not the output, the output will be the Principal
+object which holds the credentials and also the logged in details. In spring security this object is "Authentication"
+which is basically an interface and the object is AuthenticationProvider which has the method authenticate().
+If you see the Authenticate Interface it has methods ;ike getCredentials, isAuthenticated(), getPrincipal(), etc.
+
+Now we have seen the credentials username authentication, but suppose we have OAuth authentication or LDAP authentication.
+So How the AuthenticationProvider handles all these.? It handles through the AuthenticationManager which is an interface
+, it has also authenticate() method . So there are many types by which you can use this manager as the ProvideManager
+implements the AuthenticationManager. They also have supports() method and the manager calls this method to check
+whether this authentication(Credentials based, OAuth , LDAP) is supported or not.
+
+These provider actually interfaced with UserDetails Service which just takes the username and provide the AuthenticationProvider
+with the USER object which contains all the information.
+
+**IMP** So to summarise , below steps in order is working for authentication :
+
+Client enters the credentials
+It goes through the Authentication filter first
+Filter provides the input as credentials(in AUTHENTICATION object) to AuthenticationManger.
+AuthenticationManager then calls its authenticate() method which in turns call the AuthenticationProvider
+AuthenticationProvider first through support() method checks whether the authentication is supported or not.
+If supported it then calls the authenticate method and retrieve the user details from UserDetailService.
+UserDetailService through its loadUserByUsername takes the username and provide the AuthenticationProvider with the USER object which contains all the information.
+The USER information then passed back to provider and then manager and then as an output from Filter.
+
+For more details -https://www.youtube.com/watch?v=caCJAJC41Rk&list=PLqq-6Pq4lTTYTEooakHchTGglSvkZAjnE&index=6
+
