@@ -147,3 +147,9 @@ Hence in H2 we have a default schema but spring security gives us the ability to
 choice schema also.
 When we made our own type chema and tables, do remember that in resources the table creation script should be
 schema.sql and the data insertion script should be data.sql
+
+
+Now if we have the different schema , we can tell the spring security to look into these schema rather than the
+default schema , it is done by using the two  methods
+1) usersByUsernameQuery("select username,password,enabled from <table_name> where username = ?")
+2) authoritiesByUsernameQuery("select username,authority from <table_name> where username = ?")
