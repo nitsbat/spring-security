@@ -136,3 +136,14 @@ The USER information then passed back to provider and then manager and then as a
 
 For more details -https://www.youtube.com/watch?v=caCJAJC41Rk&list=PLqq-6Pq4lTTYTEooakHchTGglSvkZAjnE&index=6
 
+
+*************************************** Spring security with JDBC **************************
+
+There is a separate project in which we can find how to configure the spring security with JDBC.
+
+JDBC means the storing of credentials or the authentication are different.
+It can be either OAuth, JDBC, credentials, inMemory, LDAP,etc.
+Hence in H2 we have a default schema but spring security gives us the ability to create our
+choice schema also.
+When we made our own type chema and tables, do remember that in resources the table creation script should be
+schema.sql and the data insertion script should be data.sql
